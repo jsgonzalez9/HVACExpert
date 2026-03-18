@@ -4,7 +4,7 @@ import React from 'react';
 import { 
   Bell, 
   User, 
-  Settings,
+  Thermometer,
   ShieldCheck
 } from 'lucide-react';
 import Link from 'next/link';
@@ -31,11 +31,11 @@ const PlatformLayout: React.FC<PlatformLayoutProps> = ({ children }) => {
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-3 group">
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-industrial-primary text-white shadow-lg shadow-industrial-primary/20 transition-transform group-hover:scale-105">
-              <Settings size={24} />
+              <Thermometer size={24} />
             </div>
             <div>
-              <h2 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase italic">Parts<span className="text-industrial-primary">Direct</span></h2>
-              <p className="text-slate-500 dark:text-slate-400 text-[9px] font-black uppercase tracking-widest">INDUSTRIAL_ENGINE_ V1.0.4</p>
+              <h2 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight uppercase italic">HVAC<span className="text-industrial-primary">Expert</span></h2>
+              <p className="text-slate-500 dark:text-slate-400 text-[9px] font-black uppercase tracking-widest">HVAC_EFFICIENCY_ V1.3.0</p>
             </div>
           </Link>
         </div>
@@ -92,7 +92,7 @@ const PlatformLayout: React.FC<PlatformLayoutProps> = ({ children }) => {
           </div>
           
           <div className="flex items-center gap-4 text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-none">
-             <span>© 2024 PartsDirect Industrial</span>
+             <span>© 2024 HVACExpert Systems</span>
              <div className="size-1.5 rounded-full bg-green-500 animate-pulse"></div>
           </div>
         </div>

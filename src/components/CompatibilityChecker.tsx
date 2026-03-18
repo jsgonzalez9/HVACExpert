@@ -6,9 +6,10 @@ import {
   Bolt, 
   History, 
   Scan, 
-  Factory, 
   Plus, 
-  Database
+  Database,
+  Snowflake,
+  Wind
 } from 'lucide-react';
 
 const CompatibilityChecker = () => {
@@ -16,29 +17,29 @@ const CompatibilityChecker = () => {
   const [partB, setPartB] = useState('');
 
   const recentVerifications = [
-    { id: 'PD-9921', status: 'Compatible', time: '1h ago', title: 'Power Brake Booster vs RX-7 Master Cylinder', type: 'success' },
-    { id: 'PD-9920', status: 'Verification Required', time: '3h ago', title: 'High-Flow Injectors vs Fuel Rail Kit', type: 'warning' },
+    { id: 'HE-9921', status: 'Compatible', time: '1h ago', title: 'Carrier 38CKC vs Honeywell TH8321', type: 'success' },
+    { id: 'HE-9920', status: 'Verification Required', time: '3h ago', title: 'Lennox G61MPV vs Nest Gen 3', type: 'warning' },
   ];
 
   return (
     <div className="space-y-12">
       <div className="space-y-4">
         <h1 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none uppercase">
-          PartsDirect <span className="text-industrial-primary italic">Checker</span>
+          HVACExpert <span className="text-industrial-primary italic">Auditor</span>
         </h1>
         <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl font-medium">
-          Professional-grade compatibility auditing for automotive precision.
+          Professional-grade compatibility auditing for climate control precision.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white dark:bg-slate-900/50 p-8 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm relative overflow-hidden group hover:border-industrial-primary/30 transition-all">
           <div className="absolute -top-4 -right-4 opacity-5 group-hover:opacity-10 transition-opacity">
-            <Factory size={160} strokeWidth={1} />
+            <Wind size={160} strokeWidth={1} />
           </div>
           <div className="flex items-center gap-3 mb-8 relative z-10">
             <div className="w-8 h-8 rounded bg-industrial-primary/10 text-industrial-primary flex items-center justify-center font-black">1</div>
-            <h3 className="text-xl font-black text-slate-800 dark:text-white uppercase tracking-tight">Component Reference</h3>
+            <h3 className="text-xl font-black text-slate-800 dark:text-white uppercase tracking-tight">System Component</h3>
           </div>
           <div className="space-y-6 relative z-10">
             <div className="space-y-2">
@@ -49,7 +50,7 @@ const CompatibilityChecker = () => {
                   type="text"
                   value={partA}
                   onChange={(e) => setPartA(e.target.value)}
-                  placeholder="e.g. Mazda-N3A1-13-100"
+                  placeholder="e.g. TH8321U1008"
                   className="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-industrial-primary focus:border-transparent outline-none font-bold"
                 />
               </div>
@@ -63,7 +64,7 @@ const CompatibilityChecker = () => {
           </div>
           <div className="flex items-center gap-3 mb-8 relative z-10">
             <div className="w-8 h-8 rounded bg-industrial-primary/10 text-industrial-primary flex items-center justify-center font-black">2</div>
-            <h3 className="text-xl font-black text-slate-800 dark:text-white uppercase tracking-tight">Integration Target</h3>
+            <h3 className="text-xl font-black text-slate-800 dark:text-white uppercase tracking-tight">Target Unit</h3>
           </div>
           <div className="space-y-6 relative z-10">
             <div className="space-y-2">
@@ -74,7 +75,7 @@ const CompatibilityChecker = () => {
                   type="text"
                   value={partB}
                   onChange={(e) => setPartB(e.target.value)}
-                  placeholder="Target Part ID..."
+                  placeholder="e.g. 38CKC036340"
                   className="w-full pl-12 pr-4 py-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-industrial-primary focus:border-transparent outline-none font-bold"
                 />
               </div>

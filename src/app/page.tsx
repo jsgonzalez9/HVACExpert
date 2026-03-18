@@ -39,11 +39,11 @@ export default function Home() {
                    High-Authority Parts Catalog
                  </div>
                  <h1 className="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-[0.9] tracking-tight uppercase">
-                    Precision <span className="text-industrial-primary">Engineering</span> <br />
-                    At Your Fingertips
+                    Climate <span className="text-industrial-primary">Control</span> <br />
+                    Efficiency Audit
                  </h1>
                  <p className="text-slate-600 dark:text-slate-400 text-lg font-medium max-w-xl">
-                   Professional-grade automotive parts database with verified OEM compatibility and real-time inventory auditing for serious masters of the craft.
+                   Professional-grade HVAC parts database with verified system compatibility and real-time efficiency auditing for serious climate technicians.
                  </p>
                  <div className="flex flex-wrap gap-4 pt-2">
                     <button className="bg-industrial-primary hover:bg-orange-600 text-white font-black py-4 px-8 rounded-xl text-xs uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-industrial-primary/20">

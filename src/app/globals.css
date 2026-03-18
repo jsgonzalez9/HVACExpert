@@ -40,9 +40,9 @@
   --color-card: var(--card);
 
   /* Industrial Design Tokens */
-  --color-industrial-primary: #ec5b13;
-  --color-industrial-bg-light: #f8f6f6;
-  --color-industrial-bg-dark: #221610;
+  --color-industrial-primary: #1e40af; /* High-Authority Blue */
+  --color-industrial-bg-light: #f8fafc;
+  --color-industrial-bg-dark: #0f172a; /* Slate 900 */
   
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);

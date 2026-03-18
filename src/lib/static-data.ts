@@ -1,5 +1,5 @@
-// Static dataset for Parts Engine - 50 high-value parts
-// Focus: GMC Sierra / Chevy Silverado 2014-2019 (5.3L/6.2L)
+// Static dataset for HVACExpert Efficiency Engine
+// Focus: Climate Control (Furnaces, AC Units, Heat Pumps, Thermostats)
 
 export interface StaticPart {
   id: string;
@@ -35,53 +35,45 @@ export interface StaticPart {
 }
 
 export const STATIC_PARTS: StaticPart[] = [
-  // IGNITION SYSTEM
+  // HEATING & COOLING
   {
     id: "1",
-    part_number: "DR44G",
-    name: "Alternator - 220A High Output",
-    description: "High-output alternator for GMC Sierra/Chevrolet Silverado 2014-2018 with 5.3L/6.2L engines. Direct replacement with improved charging capacity.",
-    brand: "ACDelco",
-    category: "Electrical",
+    part_number: "TH8321U1008",
+    name: "Honeywell VisionPRO 8000 Thermostat",
+    description: "Multi-stage universal programmable thermostat with humidity control. Compatible with most residential HVAC systems.",
+    brand: "Honeywell Home",
+    category: "Controls",
     price: 189.99,
     oem_flag: true,
-    fits: ["2014-2018 GMC Sierra 1500 5.3L", "2014-2018 Chevy Silverado 1500 5.3L", "2014-2018 GMC Sierra 1500 6.2L", "2014-2018 Chevy Silverado 1500 6.2L"],
+    fits: ["Carrier 38CKC", "Lennox G61MPV", "Trane XR15"],
     symptoms: [
       {
-        description: "Battery light on dashboard",
+        description: "Display is blank or unresponsive",
         severity: "High",
-        urgency: "ASAP",
-        drivable: false,
-        diagnostic_steps: ["Check battery voltage with engine running (should be 13.5-14.5V)", "Listen for grinding noise from alternator", "Test alternator output with multimeter"]
+        urgency: "Soon",
+        drivable: true,
+        diagnostic_steps: ["Check batteries", "Verify 24V at R and C terminals", "Check furnace door switch"]
       },
       {
-        description: "Dimming headlights at idle",
+        description: "Room temperature doesn't match setting",
         severity: "Medium",
         urgency: "Soon",
         drivable: true,
-        diagnostic_steps: ["Check belt tension", "Clean battery terminals", "Test under load (AC + lights on)"]
-      },
-      {
-        description: "Car stalls while driving",
-        severity: "Critical",
-        urgency: "ASAP",
-        drivable: false,
-        diagnostic_steps: ["Check battery voltage drops below 12V while running", "Test alternator diode", "Inspect charging system wiring"]
+        diagnostic_steps: ["Calibrate sensor", "Check for drafts near baseplate", "Verify heat/cool setpoints"]
       }
     ],
     install: {
-      difficulty: 3,
-      skill_level: "Intermediate",
-      labor_hours: 1.5,
-      tools: ["Socket set", "Torque wrench", "Multimeter", "Serpentine belt tool"],
-      pro_tips: "Disconnect battery before starting. Take photo of belt routing before removal.",
-      common_mistakes: "Forgetting to disconnect battery (short circuit risk), Overtightening mounting bolts (cracks housing)"
+      difficulty: 2,
+      skill_level: "Beginner",
+      labor_hours: 0.5,
+      tools: ["Small flathead screwdriver", "Level", "Drill"],
+      pro_tips: "Label your existing wires with the included stickers before removing the old thermostat.",
+      common_mistakes: "Shorting R and C wires (blows furnace fuse), Not leveling the baseplate."
     },
     prices: [
-      { retailer: "Amazon", price: 189.99, shipping: 0, url: "https://amazon.com/dp/B00XYZ" },
-      { retailer: "RockAuto", price: 156.50, shipping: 12.99, url: "https://rockauto.com" },
-      { retailer: "O'Reilly", price: 219.99, shipping: 0, url: "https://oreilly.com" },
-      { retailer: "AutoZone", price: 199.99, shipping: 0, url: "https://autozone.com" }
+      { retailer: "Amazon", price: 189.99, shipping: 0, url: "https://amazon.com" },
+      { retailer: "SupplyHouse", price: 176.50, shipping: 0, url: "https://supplyhouse.com" },
+      { retailer: "Home Depot", price: 199.00, shipping: 0, url: "https://homedepot.com" }
     ]
   },
   {
