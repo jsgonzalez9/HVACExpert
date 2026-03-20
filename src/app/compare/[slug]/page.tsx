@@ -21,6 +21,15 @@ export async function generateMetadata({ params }: ComparePageProps): Promise<Me
   return {
     title: comparison.title,
     description: comparison.description,
+    alternates: {
+      canonical: `https://hvacexpert.com/compare/${slug}`,
+    },
+    openGraph: {
+      title: comparison.title,
+      description: comparison.description,
+      type: 'article',
+      url: `https://hvacexpert.com/compare/${slug}`,
+    }
   };
 }
 
@@ -45,7 +54,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
       <header className="border-b border-zinc-100 bg-white/80 sticky top-0 z-50 backdrop-blur-md">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="text-2xl font-black tracking-tighter text-orange-600">
-            PARTS<span className="text-zinc-900">DIRECT</span>
+            HVAC<span className="text-zinc-900">EXPERT</span>
           </Link>
         </div>
       </header>
@@ -55,7 +64,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
           {/* Header */}
           <div className="mb-12 text-center">
             <Badge className="bg-orange-100 text-orange-600 border-none mb-4 uppercase tracking-widest px-4 py-1 font-bold">
-              Expert Comparison
+              High-Efficiency Comparison
             </Badge>
             <h1 className="text-4xl md:text-6xl font-black tracking-tighter mb-6 leading-tight">
               {comparison.title}
@@ -75,7 +84,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                 <div className="flex-1">
                   <div className="inline-flex items-center gap-2 bg-orange-600 text-white px-4 py-1 rounded-full text-xs font-black uppercase tracking-widest mb-6">
                     <Star size={14} fill="currentColor" />
-                    Overall Winner: Best for Silverado
+                    Overall Winner: Premium HVAC Component
                   </div>
                   <h2 className="text-3xl md:text-5xl font-black mb-4">
                     {winner.brand} {winner.name}
@@ -92,7 +101,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
                     </div>
                     <div className="flex items-center gap-2 text-orange-400 bg-orange-400/10 px-3 py-1.5 rounded-lg border border-orange-400/20">
                       <ShieldCheck size={16} />
-                      ✔ Fits most Silverado models
+                      ✔ HVAC Pro Verified
                     </div>
                   </div>
 
@@ -223,11 +232,11 @@ export default async function ComparePage({ params }: ComparePageProps) {
             <Info className="mx-auto text-zinc-300 mb-6" size={48} />
             <h3 className="text-3xl font-black mb-4">Not sure which one fits?</h3>
             <p className="text-zinc-500 text-lg mb-8 max-w-2xl mx-auto">
-              Use our technical compatibility engine to verify these parts against your specific GMC or Chevy VIN before ordering.
+              Use our system compatibility engine to verify these components against your specific HVAC model and tonnage before ordering.
             </p>
             <Link href="/">
               <Button className="bg-orange-600 hover:bg-orange-700 font-black h-14 px-12 text-lg">
-                Verify My Vehicle
+                Verify My System
               </Button>
             </Link>
           </div>
@@ -236,7 +245,7 @@ export default async function ComparePage({ params }: ComparePageProps) {
 
       <footer className="bg-zinc-50 py-16 mt-24">
         <div className="container mx-auto px-4 text-center">
-          <p className="text-zinc-400 text-sm font-bold uppercase tracking-widest">PartsDirect Comparison Engine © 2026</p>
+          <p className="text-zinc-400 text-sm font-bold uppercase tracking-widest">HVACExpert Service Network © 2026</p>
         </div>
       </footer>
     </div>

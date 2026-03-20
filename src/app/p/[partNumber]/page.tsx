@@ -5,10 +5,36 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Truck, Shield, AlertTriangle, CheckCircle, Wrench, Clock } from "lucide-react";
 
+import { Metadata } from "next";
+
 interface PartPageProps {
   params: Promise<{
     partNumber: string;
   }>;
+}
+
+export async function generateMetadata({ params }: PartPageProps): Promise<Metadata> {
+  const { partNumber } = await params;
+  const part = getPartByNumber(partNumber);
+  
+  if (!part) return { title: 'Component Not Found' };
+
+  const title = `${part.part_number} ${part.brand} ${part.name} - HVAC Replacement Component`;
+  const description = `Buy ${part.brand} ${part.name} (${part.part_number}). Compare prices, check compatibility, and find symptoms of failure. HVAC Pro verified parts.`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://hvacexpert.com/p/${partNumber}`,
+    },
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+      url: `https://hvacexpert.com/p/${partNumber}`,
+    }
+  };
 }
 
 export async function generateStaticParams() {
@@ -34,7 +60,7 @@ export default async function PartPage({ params }: PartPageProps) {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center">
             <a href="/" className="text-2xl font-bold">
-              Parts<span className="text-[#f96706]">Direct</span>
+              HVAC<span className="text-[#f96706]">Expert</span>
             </a>
           </div>
         </div>
@@ -48,7 +74,7 @@ export default async function PartPage({ params }: PartPageProps) {
             <div className="bg-[#1e1e1e] border border-[#333333] rounded-lg p-8 mb-6">
               <div className="h-80 bg-[#2a2a2a] rounded-lg flex items-center justify-center">
                 <span className="text-6xl font-bold text-gray-700">
-                  {part.part_number.slice(0, 2)}
+                  {part.part_number.slice(0, 4)}
                 </span>
               </div>
             </div>
@@ -71,11 +97,11 @@ export default async function PartPage({ params }: PartPageProps) {
               <div className="flex items-center gap-4 pt-4">
                 <div className="flex items-center gap-2 text-gray-500">
                   <Truck size={18} />
-                  <span className="text-sm">Free shipping over $35</span>
+                  <span className="text-sm">Priority HVAC Shipping</span>
                 </div>
                 <div className="flex items-center gap-2 text-gray-500">
                   <Shield size={18} />
-                  <span className="text-sm">2-year warranty</span>
+                  <span className="text-sm">Industrial Grade Components</span>
                 </div>
               </div>
 
@@ -84,7 +110,7 @@ export default async function PartPage({ params }: PartPageProps) {
                 <div className="mt-6 p-4 bg-[#1e1e1e] border border-[#333333] rounded-lg">
                   <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                     <AlertTriangle className="text-amber-500" size={20} />
-                    Common Symptoms
+                    System Diagnostics
                   </h3>
                   <div className="space-y-3">
                     {part.symptoms.map((symptom, idx) => (
@@ -104,7 +130,7 @@ export default async function PartPage({ params }: PartPageProps) {
                             `}>
                               {symptom.urgency}
                             </span>
-                            <span>{symptom.drivable ? '✓ Safe to drive' : '✗ Do not drive'}</span>
+                            <span>{symptom.drivable ? '✓ System Operable' : '✗ Shut Down Immediately'}</span>
                           </div>
                         </div>
                       </div>
@@ -117,15 +143,15 @@ export default async function PartPage({ params }: PartPageProps) {
               <div className="mt-6 p-4 bg-[#1e1e1e] border border-[#333333] rounded-lg">
                 <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
                   <Wrench className="text-[#f96706]" size={20} />
-                  Installation
+                  Installation Guide
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-sm text-gray-500">Difficulty</p>
+                    <p className="text-sm text-gray-500">Tech Level</p>
                     <p className="font-medium">{part.install.skill_level}</p>
                   </div>
                   <div>
-                    <p className="text-sm text-gray-500">Time</p>
+                    <p className="text-sm text-gray-500">Estimated Labor</p>
                     <p className="font-medium flex items-center gap-1">
                       <Clock size={14} /> {part.install.labor_hours} hours
                     </p>
@@ -147,13 +173,13 @@ export default async function PartPage({ params }: PartPageProps) {
                   ${part.price.toFixed(2)}
                 </span>
                 <Badge className="bg-green-500/20 text-green-400 border-green-500/30">
-                  In Stock
+                  Bulk Pricing Available
                 </Badge>
               </div>
 
               <Button className="w-full bg-[#f96706] hover:bg-orange-600 text-white h-12 text-lg mb-4">
                 <ShoppingCart className="mr-2" size={20} />
-                View Best Price
+                Find Best Price
               </Button>
 
               <a 
@@ -166,18 +192,18 @@ export default async function PartPage({ params }: PartPageProps) {
                   variant="outline"
                   className="w-full border-[#333333] text-white hover:bg-[#2a2a2a] h-12"
                 >
-                  Check {bestPrice?.retailer || 'Retailers'}
+                  Check {bestPrice?.retailer || 'Distributors'}
                 </Button>
               </a>
             </div>
 
             <PriceComparison prices={part.prices} />
 
-            {/* Mechanic Lead Gen */}
+            {/* HVAC Pro Lead Gen */}
             <div className="bg-gradient-to-br from-[#f96706]/20 to-[#f96706]/5 border border-[#f96706]/30 rounded-lg p-6">
-              <h3 className="text-lg font-semibold mb-2">Need a Mechanic?</h3>
+              <h3 className="text-lg font-semibold mb-2">Need an HVAC Pro?</h3>
               <p className="text-sm text-gray-400 mb-4">
-                Get quotes from local shops for {part.name} installation
+                Get free installation quotes from licensed HVAC technicians for {part.name}
               </p>
               <div className="space-y-3">
                 <input
@@ -187,17 +213,17 @@ export default async function PartPage({ params }: PartPageProps) {
                 />
                 <select className="w-full bg-[#121212] border border-[#333333] rounded px-4 py-3 text-white"
                 >
-                  <option>When do you need it?</option>
-                  <option>ASAP - Won't start</option>
-                  <option>Soon - Within a week</option>
-                  <option>DIY - Just comparing prices</option>
+                  <option>System Type</option>
+                  <option>Residential AC/Heat</option>
+                  <option>Commercial HVAC</option>
+                  <option>Heat Pump / Mini-Split</option>
                 </select>
                 <Button className="w-full bg-white text-black hover:bg-gray-200 h-12">
-                  Get Free Quotes
+                  Find Local HVAC Pros
                 </Button>
               </div>
               <p className="text-xs text-gray-500 mt-3 text-center">
-                Average response time: 15 minutes
+                Average contractor response: 8 minutes
               </p>
             </div>
           </div>
