@@ -222,3 +222,29 @@ export const submitMechanicLead = async (lead: {
   if (error) throw error;
   return data;
 };
+
+// ============================================
+// SITEMAP HELPERS
+// ============================================
+
+export const getAllPartNumbers = async () => {
+  const { data, error } = await supabase
+    .from('parts')
+    .select('part_number')
+    .order('part_number', { ascending: true })
+    .limit(10000); // Scalable limit
+
+  if (error) throw error;
+  return data.map(p => p.part_number);
+};
+
+export const getAllSymptomSlugs = async () => {
+  const { data, error } = await supabase
+    .from('seo_pages')
+    .select('slug')
+    .eq('published', true)
+    .order('slug', { ascending: true });
+
+  if (error) throw error;
+  return data.map(p => p.slug);
+};
