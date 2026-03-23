@@ -18,6 +18,19 @@ export async function GET() {
 
   const today = new Date().toISOString().split("T")[0];
 
+  const escapeXml = (unsafe: string) => {
+    return unsafe.replace(/[<>&'"]/g, (c) => {
+      switch (c) {
+        case '<': return '&lt;';
+        case '>': return '&gt;';
+        case '&': return '&amp;';
+        case '\'': return '&apos;';
+        case '"': return '&quot;';
+        default: return c;
+      }
+    });
+  };
+
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   ${staticRoutes
@@ -32,7 +45,7 @@ export async function GET() {
   ${partNumbers
     .map((num) => `
   <url>
-    <loc>${baseUrl}/p/${num}</loc>
+    <loc>${baseUrl}/p/${escapeXml(num)}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -41,7 +54,7 @@ export async function GET() {
   ${symptomSlugs
     .map((slug) => `
   <url>
-    <loc>${baseUrl}/symptoms/${slug}</loc>
+    <loc>${baseUrl}/symptoms/${escapeXml(slug)}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
